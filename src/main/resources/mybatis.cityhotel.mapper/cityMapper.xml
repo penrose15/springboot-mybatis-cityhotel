@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.cityhotel.mapper.CityMapper">
+    <resultMap id="CityResultMap" type="mybatis.cityhotel.domain.City">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <select id="getAllCities" resultMap="CityResultMap">
+        select * from city
+    </select>
+
+    <select id="getCityById" resultMap="CityResultMap" parameterType="biginteger">
+        select * from city where id = #{id}
+    </select>
+
+    <insert id="insertCity" parameterType="mybatis.cityhotel.domain.City" useGeneratedKeys="true" keyProperty="id">
+        insert into city (name) values (#{name})
+    </insert>
+
+    <update id="updateCity" parameterType="mybatis.cityhotel.domain.City">
+        update city set name = #{name} where id = #{id}
+    </update>
+
+    <delete id="deleteCity" parameterType="biginteger">
+        delete from city where id = #{id}
+    </delete>
+</mapper>
